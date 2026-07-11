@@ -14,7 +14,7 @@
   var I18N = {
     en: {
       badge: 'Under construction',
-      headline: "We're building something great.",
+      headline: "Our website is under construction.",
       subhead:
         "FikraBits turns ideas into bits. Our new site is on its way — in the meantime, drop us a line and let's talk.",
       formTitle: 'Get in touch',
@@ -33,7 +33,7 @@
     },
     ar: {
       badge: 'قيد الإنشاء',
-      headline: 'نحن نبني شيئًا رائعًا.',
+      headline: 'موقعنا الالكتروني قيد الإنشاء.',
       subhead:
         'فكرة بِتس تحوّل الأفكار إلى واقع رقمي. موقعنا الجديد في الطريق — وحتى ذلك الحين، راسلنا ولنتحدث.',
       formTitle: 'تواصل معنا',
