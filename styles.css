@@ -95,7 +95,7 @@ html[dir="rtl"] body { font-family: var(--font-ar); }
   letter-spacing: 0.5px;
 }
 .brand-mark {
-  width: clamp(3.25rem, 6.5vw, 4.25rem);
+  width: clamp(2.1rem, 4.2vw, 2.75rem);
   height: auto;
   color: var(--accent);
   flex-shrink: 0;

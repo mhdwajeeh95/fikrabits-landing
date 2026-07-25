@@ -25,6 +25,8 @@
       phEmail: 'you@example.com',
       phMessage: 'Tell us about your idea…',
       cta: 'Send message',
+      brandLight: 'Fikra',
+      brandAccent: 'Bits',
       copyright: '© 2026 FikraBits. All rights reserved.',
       // runtime-only strings
       langLabel: 'العربية',
@@ -44,6 +46,8 @@
       phEmail: 'you@example.com',
       phMessage: 'أخبرنا عن فكرتك…',
       cta: 'إرسال الرسالة',
+      brandLight: 'فكرة',
+      brandAccent: ' بتس',
       copyright: '© 2026 فكرة بِتس. جميع الحقوق محفوظة.',
       langLabel: 'English',
       noteOpening: 'جارٍ فتح تطبيق البريد لديك…',
