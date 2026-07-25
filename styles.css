@@ -87,9 +87,18 @@ html[dir="rtl"] body { font-family: var(--font-ar); }
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-weight: 700;
   font-size: clamp(1.4rem, 2.6vw, 1.75rem);
   letter-spacing: 0.5px;
+}
+.brand-mark {
+  width: clamp(3.25rem, 6.5vw, 4.25rem);
+  height: auto;
+  color: var(--accent);
+  flex-shrink: 0;
 }
 .brand-light { color: var(--cream); font-weight: 500; }
 .brand-accent { color: var(--accent); font-weight: 700; }
