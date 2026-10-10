@@ -30,6 +30,10 @@
       copyright: '© 2026 FikraBits. All rights reserved.',
       // runtime-only strings
       langLabel: 'العربية',
+      lightMode: 'Light mode',
+      darkMode: 'Dark mode',
+      switchLight: 'Switch to light mode',
+      switchDark: 'Switch to dark mode',
       noteOpening: 'Opening your email app…',
       noteFill: 'Please fill in all fields.'
     },
@@ -50,12 +54,44 @@
       brandAccent: ' بتس',
       copyright: '© 2026 فكرة بِتس. جميع الحقوق محفوظة.',
       langLabel: 'English',
+      lightMode: 'الوضع الفاتح',
+      darkMode: 'الوضع الداكن',
+      switchLight: 'التبديل إلى الوضع الفاتح',
+      switchDark: 'التبديل إلى الوضع الداكن',
       noteOpening: 'جارٍ فتح تطبيق البريد لديك…',
       noteFill: 'يرجى تعبئة جميع الحقول.'
     }
   };
 
   var currentLang = 'en';
+  var themeToggle = document.getElementById('themeToggle');
+  var systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+  var themeChoice;
+  try { themeChoice = localStorage.getItem('fikrabits-theme'); } catch (e) {}
+  if (themeChoice !== 'dark' && themeChoice !== 'light') themeChoice = null;
+
+  function updateThemeLabel() {
+    var light = document.documentElement.dataset.theme === 'light';
+    var dict = I18N[currentLang];
+    themeToggle.textContent = light ? dict.darkMode : dict.lightMode;
+    themeToggle.setAttribute('aria-label', light ? dict.switchDark : dict.switchLight);
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    document.querySelector('meta[name="theme-color"]').content = theme === 'light' ? '#faf9fd' : '#0b0d17';
+    document.querySelector('link[rel="icon"]').href = 'assets/fikrabits-icon-' + (theme === 'light' ? 'deep-indigo' : 'soft-violet') + '.svg';
+    updateThemeLabel();
+  }
+
+  themeToggle.addEventListener('click', function () {
+    themeChoice = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+    try { localStorage.setItem('fikrabits-theme', themeChoice); } catch (e) {}
+    applyTheme(themeChoice);
+  });
+  systemTheme.addEventListener('change', function (event) {
+    if (!themeChoice) applyTheme(event.matches ? 'dark' : 'light');
+  });
 
   function applyLang(lang) {
     currentLang = I18N[lang] ? lang : 'en';
@@ -76,6 +112,8 @@
         el.textContent = dict[key];
       }
     });
+
+    updateThemeLabel();
 
     // language toggle shows the OTHER language
     var currentSpan = document.querySelector('.lang-current');
@@ -111,7 +149,7 @@
       var email = (document.getElementById('email').value || '').trim();
       var message = (document.getElementById('message').value || '').trim();
 
-      if (!name || !email || !message) {
+      if (!name || !email || !message || !form.checkValidity()) {
         if (note) note.textContent = I18N[currentLang].noteFill;
         if (typeof form.reportValidity === 'function') form.reportValidity();
         return;
